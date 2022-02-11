@@ -27,7 +27,7 @@ const ContributeForm = ({ address }) => {
                 from: accounts[0],
                 value: web3.utils.toWei(value, 'ether')
             });
-            Router.replace(window.location.pathname);
+            Router.replace(`/campaigns/${address}`);
         } catch (error) {
             setErrorMessage(error.message);
         }
