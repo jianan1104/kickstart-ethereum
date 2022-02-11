@@ -6,7 +6,7 @@ import { Router } from '../../routes';
 import { useMetaMask } from "metamask-react";
 
 const CampaignNew = () => {
-    const { status } = useMetaMask();
+    const { status, account } = useMetaMask();
     const [minimumContribution,setMinimumContribution]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
     const [loading,setLoading]=useState(false);

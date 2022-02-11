@@ -14,20 +14,18 @@ const CampaignIndex = (props) => {
         //     }
         //     fetch();
         // }, []);
-        if(true){
-            const items = campaigns.map(address => {
-                return {
-                    header: address,
-                    description: (
-                        <Link route={`/campaigns/${address}`}>
-                            <a>View Campaign</a>
-                        </Link>
-                        ),
-                    fluid: true
-                }
-            });
-            return <Card.Group items={items} className="margin-top"/>
-        }
+        const items = campaigns.map(address => {
+            return {
+                header: address,
+                description: (
+                    <Link route={`/campaigns/${address}`}>
+                        <a>View Campaign</a>
+                    </Link>
+                    ),
+                fluid: true
+            }
+        });
+        return <Card.Group items={items} className="margin-top"/>
     }
 
     return(
