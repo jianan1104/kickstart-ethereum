@@ -11,7 +11,7 @@
   <p align="center">
     A Blockchain Crowdfunding Platform!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://kickstart-ethernum-6vts77bnn-jianan1104.vercel.app/">View Demo</a>
   </p>
 </div>
 
