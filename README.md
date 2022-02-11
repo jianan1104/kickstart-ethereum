@@ -41,8 +41,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://imgur.com/OmWcbK2)
-
 A Blockchain Crowdfunding Platform!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
