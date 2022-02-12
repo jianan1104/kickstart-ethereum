@@ -9,10 +9,13 @@ const RequestRow = ({address, id, request, approversCount, isAdmin}) => {
     const router = useRouter();
     const [approveLoading, setApproveLoading] = useState(false);
     const [finalizeLoading, setFinalizeLoading] = useState(false);
-    const { status, account, ethereum } = useMetaMask();
+    const { status, account, ethereum, connect } = useMetaMask();
 
     const onApprove = async () => {
-        if(status !== 'connected')  return 
+        if(status !== 'connected')  {
+            connect();
+            return 
+        }
         setApproveLoading(true);
         try {
             const campaign = await Campaign(address, ethereum);
@@ -27,7 +30,10 @@ const RequestRow = ({address, id, request, approversCount, isAdmin}) => {
     };
 
     const onFinalize = async () => {
-        if(status !== 'connected')  return 
+        if(status !== 'connected')  {
+            connect();
+            return 
+        }
         setFinalizeLoading(true);
         try {
             const campaign = await Campaign(address, ethereum);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import factory from '../ethereum/factory';
 import { Card, Button } from 'semantic-ui-react'
 import Link from 'next/link';

@@ -7,7 +7,7 @@ import { useMetaMask } from "metamask-react";
 
 const ContributeForm = ({ address }) => {
     const router = useRouter();
-    const { status, account, ethereum } = useMetaMask();
+    const { status, account, ethereum, connect } = useMetaMask();
     const [value,setValue]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
     const [loading,setLoading]=useState(false);
@@ -16,6 +16,7 @@ const ContributeForm = ({ address }) => {
         e.preventDefault();
         if(status !== 'connected'){
             setErrorMessage('Please connect wallet.');
+            connect();
             return 
         }
         setLoading(true);

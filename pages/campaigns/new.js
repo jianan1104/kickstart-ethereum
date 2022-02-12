@@ -6,7 +6,7 @@ import { useMetaMask } from "metamask-react";
 
 const CampaignNew = () => {
     const router = useRouter();
-    const { status, account, ethereum } = useMetaMask();
+    const { status, account, ethereum, connect } = useMetaMask();
     const [minimumContribution,setMinimumContribution]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
     const [loading,setLoading]=useState(false);
@@ -15,6 +15,7 @@ const CampaignNew = () => {
         event.preventDefault();
         if(status !== 'connected'){
             setErrorMessage('Please connect wallet.');
+            connect();
             return 
         }
         setLoading(true);
