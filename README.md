@@ -13,7 +13,9 @@
     <br />
     <a href="https://kickstart-ethernum-6vts77bnn-jianan1104.vercel.app/">View Demo</a>
   </p>
-  ![](https://i.imgur.com/OmWcbK2.png)
+
+  <img src="https://i.imgur.com/OmWcbK2.png" alt="Logo" width="80" height="80">
+
 </div>
 
 
