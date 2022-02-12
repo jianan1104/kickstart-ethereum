@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button, Message, Input } from 'semantic-ui-react';
-import Campaign from '../../../ethereum/campaign';
-import web3 from "../../../ethereum/web3";
-import { Link, Router } from '../../../routes';
+import Campaign from '../../../../ethereum/campaign';
+import web3 from "../../../../ethereum/web3";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
-
-const RequestNew = (props) => {
-    const address = props.address;
+const RequestNew = ({address}) => {
+    const router = useRouter();
     const [value,setValue]=useState('');
     const [description,setDescription]=useState('');
     const [recipient,setRecipient]=useState('');
@@ -30,7 +30,7 @@ const RequestNew = (props) => {
                 .send({
                     from: accounts[0]
                 });
-            Router.pushRoute(`/campaigns/${address}/requests`);
+                router.push(`/campaigns/${address}/requests`);
         } catch (error) {
             setErrorMessage(error.message);
         }
@@ -38,7 +38,7 @@ const RequestNew = (props) => {
     }
     return(
         <>
-            <Link route={`/campaigns/${address}/requests`}>
+            <Link href={`/campaigns/${address}/requests`}>
                 <a>
                     Back
                 </a>
@@ -76,10 +76,10 @@ const RequestNew = (props) => {
 }
 
 
-RequestNew.getInitialProps = async (props)  => {
-    const { address } = props.query;
-    return { address };
-  };
+export async function getServerSideProps(context) {
+    const { address } = context.query;
+    return { props: { address }};
+};
 
 
 export default RequestNew;

@@ -1,23 +1,24 @@
 import React from "react";
 import { Button, Table } from 'semantic-ui-react';
-import { Link } from '../../../routes';
+import Link from 'next/link'
 import Campaign from "../../../ethereum/campaign";
 import RequestRow from "../../../components/RequestRow";
 import { useMetaMask } from "metamask-react";
 
 
-const RequestIndex = (props) => {
+const RequestIndex = ({data}) => {
     const { status, account } = useMetaMask();
+    const { address, requests, requestsCount, approversCount, manager  } = data;
     const renderRow = () => {
-        return props.requests.map((request, idx) => {
+        return requests.map((request, idx) => {
             return (
             <RequestRow 
                 key={idx}
                 id={idx}
                 request={request}
-                approversCount={ props.approversCount}
-                address={ props.address}
-                isAdmin={ props.manager.toLowerCase() == account }
+                approversCount={ approversCount}
+                address={ address}
+                isAdmin={ manager.toLowerCase() == account }
             />
             )
         });
@@ -27,8 +28,8 @@ const RequestIndex = (props) => {
         <>
             <div style={{display: 'flex', justifyContent: 'space-between', marginTop: '15px'}}>
                 <h3>Pending Request</h3>
-                {   props.manager.toLowerCase() == account ?
-                    <Link route={`/campaigns/${props.address}/requests/new`}>
+                {   manager.toLowerCase() == account ?
+                    <Link href={`/campaigns/${address}/requests/new`}>
                         <a>
                             <Button primary>Add Request</Button>
                         </a>
@@ -45,7 +46,7 @@ const RequestIndex = (props) => {
                         <HeaderCell>Approval Count</HeaderCell>
                         <HeaderCell>Approve</HeaderCell>
                         {
-                            props.manager.toLowerCase() == account ? <HeaderCell>Finalize</HeaderCell> : null
+                            manager.toLowerCase() == account ? <HeaderCell>Finalize</HeaderCell> : null
                         }
                         
                     </Row>
@@ -54,26 +55,31 @@ const RequestIndex = (props) => {
                     { renderRow() }
                 </Body>
             </Table>
-            <div> Found { props.requestsCount } requests.</div>
+            <div> Found { requestsCount } requests.</div>
         </>
     );
 
 };
 
-RequestIndex.getInitialProps = async (props) => {
-    const { address } = props.query;
+export async function getServerSideProps(context) {
+    const { address } = context.query;
     const campaign = await Campaign(address);
     const requestsCount = await campaign.methods.getRequestsCount().call();
     const approversCount = await campaign.methods.approversCount().call();
     const manager = await campaign.methods.manager().call();
-    const requests = await Promise.all(
+    let requests = await Promise.all(
         Array(parseInt(requestsCount))
         .fill()
         .map((obj, idx) => {
             return campaign.methods.requests(idx).call();
         })
     );
-    return { address, requests, requestsCount, approversCount, manager };
+    requests = JSON.parse(JSON.stringify(requests))
+    return { props: {
+        data: {
+            address,  requests, requestsCount, approversCount, manager 
+        }
+    }};
 };
 
 

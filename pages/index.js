@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import factory from '../ethereum/factory';
 import { Card, Button } from 'semantic-ui-react'
-import { Link } from '../routes';
+import Link from 'next/link';
 
 const CampaignIndex = ({ campaigns }) => {
     const renderCampaigns = () =>{
@@ -9,7 +9,7 @@ const CampaignIndex = ({ campaigns }) => {
             return {
                 header: address,
                 description: (
-                    <Link route={`/campaigns/${address}`}>
+                    <Link href={`/campaigns/${address}`}>
                         <a>View Campaign</a>
                     </Link>
                     ),
@@ -22,7 +22,7 @@ const CampaignIndex = ({ campaigns }) => {
     return(
             <div>
                 <h3>Open Campaigns</h3>
-                <Link route="/campaigns/new">
+                <Link href="/campaigns/new">
                     <a>
                         <Button 
                             content="Create Campaign"  

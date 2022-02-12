@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Input, Menu, Grid, GridColumn } from 'semantic-ui-react';
-import { Link } from '../routes';
+import Link from 'next/link';
 import Wallet from './wallet';
 
-class MenuComponent extends Component {
-
-  render() {
-
+const MenuComponent = () => {
     return (
       <>
       <Grid className='margin-top'>
         <Grid.Column width={13}>
           <Menu>
-            <Link route="/">
+            <Link href="/">
               <a className='item'>Home</a>
             </Link>
             <Menu.Menu position='right'>
@@ -23,12 +20,11 @@ class MenuComponent extends Component {
           </Menu>
         </Grid.Column>
         <Grid.Column width={3}>
-        <Wallet />
+          <Wallet />
         </Grid.Column>
       </Grid>
       </>
     )
-  }
 };
 
 export default MenuComponent;

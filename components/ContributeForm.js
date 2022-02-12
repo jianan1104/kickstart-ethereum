@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Form, Input, Button, Message } from 'semantic-ui-react';
 import Campaign from '../ethereum/campaign';
 import web3 from "../ethereum/web3";
-import { Router } from '../routes';
+import { useRouter } from "next/router";
 import { useMetaMask } from "metamask-react";
 
 
 const ContributeForm = ({ address }) => {
+    const router = useRouter();
     const { status } = useMetaMask();
     const [value,setValue]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
@@ -27,7 +28,7 @@ const ContributeForm = ({ address }) => {
                 from: accounts[0],
                 value: web3.utils.toWei(value, 'ether')
             });
-            Router.replace(`/campaigns/${address}`);
+            router.replace(`/campaigns/${address}`);
         } catch (error) {
             setErrorMessage(error.message);
         }
