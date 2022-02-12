@@ -3,20 +3,21 @@ import { Table, Button } from 'semantic-ui-react';
 import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
 import { useRouter } from "next/router";
+import { useMetaMask } from "metamask-react";
 
 const RequestRow = ({address, id, request, approversCount, isAdmin}) => {
     const router = useRouter();
     const [approveLoading, setApproveLoading] = useState(false);
     const [finalizeLoading, setFinalizeLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const { status, account, ethereum } = useMetaMask();
 
     const onApprove = async () => {
+        if(status !== 'connected')  return 
         setApproveLoading(true);
         try {
-            const accounts = await web3.eth.getAccounts();
-            const campaign = await Campaign(address);
+            const campaign = await Campaign(address, ethereum);
             await campaign.methods.approveRequest(id).send({
-                from: accounts[0]
+                from: account
             });
             router.replace(window.location.pathname);
         } catch (error) {
@@ -26,12 +27,12 @@ const RequestRow = ({address, id, request, approversCount, isAdmin}) => {
     };
 
     const onFinalize = async () => {
+        if(status !== 'connected')  return 
         setFinalizeLoading(true);
         try {
-            const accounts = await web3.eth.getAccounts();
-            const campaign = await Campaign(address);
+            const campaign = await Campaign(address, ethereum);
             await campaign.methods.finalizeRequest(id).send({
-                from: accounts[0]
+                from: account
             });
             router.replace(`/campaigns/${address}`);
         } catch (error) {

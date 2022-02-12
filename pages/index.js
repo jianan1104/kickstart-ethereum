@@ -39,7 +39,7 @@ const CampaignIndex = ({ campaigns }) => {
 };
 
 export async function getServerSideProps() {
-    const campaigns = await factory.methods.getDeployedCampaign().call();
+    const campaigns = await factory().methods.getDeployedCampaign().call();
     return { props: { campaigns } };
 };
 

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Button, Input, Form, Message } from 'semantic-ui-react'
 import factory from '../../ethereum/factory';
-import web3 from "../../ethereum/web3";
 import { useRouter } from 'next/router'
 import { useMetaMask } from "metamask-react";
 
 const CampaignNew = () => {
     const router = useRouter();
-    const { status, account } = useMetaMask();
+    const { status, account, ethereum } = useMetaMask();
     const [minimumContribution,setMinimumContribution]=useState('');
     const [errorMessage,setErrorMessage]=useState('');
     const [loading,setLoading]=useState(false);
@@ -21,8 +20,7 @@ const CampaignNew = () => {
         setLoading(true);
         setErrorMessage('');
         try {
-            const accounts = await web3.eth.getAccounts();
-            await factory.methods
+            await factory(ethereum).methods
                 .createCampaign(minimumContribution)
                 .send({
                     from: account
