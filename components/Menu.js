@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Input, Menu, Grid, GridColumn } from 'semantic-ui-react';
 import Link from 'next/link';
 import Wallet from './wallet';
