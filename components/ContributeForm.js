@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Message } from 'semantic-ui-react';
 import Campaign from '../ethereum/campaign';
+import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
 import { useMetaMask } from "metamask-react";
 
