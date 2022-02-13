@@ -10,7 +10,8 @@ export default function App({ Component, pageProps }) {
    return (
       <>
          <Head>
-            <link rel="shortcut icon" href="./favicon.ico" />
+            <title>Blockchain Crowdfunding Platform-區塊鏈群眾募資平台</title>
+            <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/943/PNG/128/shoppaymentorderbuy-04_icon-icons.com_73886.png" />
          </Head>
          <MetaMaskProvider>
             <Container>
