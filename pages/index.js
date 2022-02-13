@@ -1,6 +1,6 @@
 import React from 'react';
 import factory from '../ethereum/factory';
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Grid } from 'semantic-ui-react'
 import Link from 'next/link';
 
 const CampaignIndex = ({ campaigns }) => {
@@ -13,14 +13,16 @@ const CampaignIndex = ({ campaigns }) => {
                         <a>View Campaign</a>
                     </Link>
                     ),
-                fluid: true
+                fluid: true,
+                style: { overflowWrap: 'break-word'}
             }
         });
         return <Card.Group items={items} className="margin-top"/>
     }
 
     return(
-            <div>
+        <Grid doubling>
+             <div>
                 <h3>Open Campaigns</h3>
                 <Link href="/campaigns/new">
                     <a>
@@ -28,13 +30,14 @@ const CampaignIndex = ({ campaigns }) => {
                             content="Create Campaign"  
                             icon="add circle"  
                             className='margin-top'
-                            floated='right'
                             primary
                             />
                     </a>
                 </Link>
                 { renderCampaigns() }
             </div>
+        </Grid>
+           
     )
 };
 

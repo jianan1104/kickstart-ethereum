@@ -6,17 +6,12 @@ import Wallet from './wallet';
 const MenuComponent = () => {
     return (
       <>
-      <Grid className='margin-top'>
+      <Grid doubling className='margin-top'>
         <Grid.Column width={13}>
           <Menu>
             <Link href="/">
               <a className='item'>Home</a>
             </Link>
-            <Menu.Menu position='right'>
-              <Menu.Item>
-                <Input icon='search' placeholder='Search...' />
-              </Menu.Item>
-            </Menu.Menu>
           </Menu>
         </Grid.Column>
         <Grid.Column width={3}>

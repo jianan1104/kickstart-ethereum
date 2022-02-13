@@ -43,10 +43,10 @@ const CampaignShow = ({ data }) => {
 
     return(
         <>
-            <Grid>
+            <Grid stackable>
                 <Grid.Row>
                     <Grid.Column width={10}>
-                        <h3>{`Campaign of ${ data.address }`}</h3>
+                        <h3 style={{ overflowWrap: 'break-word'}}>{`Campaign of ${ data.address }`}</h3>
                         { renderCards() }
                     </Grid.Column>
                     <Grid.Column width={6}>
