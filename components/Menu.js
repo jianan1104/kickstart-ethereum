@@ -12,6 +12,9 @@ const MenuComponent = () => {
             <Link href="/">
               <a className='item'>Home</a>
             </Link>
+            <Link href="/about">
+              <a className='item'>About</a>
+            </Link>
           </Menu>
         </Grid.Column>
         <Grid.Column width={3}>
