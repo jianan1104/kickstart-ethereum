@@ -10,6 +10,7 @@
 
   <p align="center">
     A Blockchain Crowdfunding Platform!
+    區塊鏈群眾募資平台，解決傳統募資平台金流公平性，項目方可發請花費請求，由募資者投票決定是否花錢。
     <br />
     <a href="https://kickstart-ethernum.vercel.app/">View Demo</a>
   </p>
