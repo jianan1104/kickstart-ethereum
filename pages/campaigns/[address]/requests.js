@@ -36,7 +36,7 @@ const RequestIndex = ({data}) => {
                     </Link> : null
                 }
             </div>
-            <Table unstackable>
+            <Table stackable>
                 <Header>
                     <Row>
                         <HeaderCell>ID</HeaderCell>

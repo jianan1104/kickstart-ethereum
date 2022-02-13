@@ -6,7 +6,7 @@ import Wallet from './wallet';
 const MenuComponent = () => {
     return (
       <>
-      <Grid doubling className='margin-top'>
+      <Grid doubling stackable className='margin-top'>
         <Grid.Column width={13}>
           <Menu>
             <Link href="/">
