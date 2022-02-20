@@ -71,7 +71,7 @@ A Blockchain Crowdfunding Platform!
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/jianan1104/kickstart-ethernum.git
+   git clone https://github.com/jianan1104/kickstart-ethereum.git
    ```
 2. Install NPM packages
    ```sh
